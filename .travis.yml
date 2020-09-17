@@ -75,13 +75,14 @@ matrix:
     python: 3.8
     services:
       - docker
-    if: (branch IS master) AND (tag IS present) AND (repo = python-greenlet/greenlet)
+    #if: (branch IS master) AND (tag IS present) AND (repo = python-greenlet/greenlet)
+    if: (branch = arm64_automate_wheelbuild) AND (tag IS present) AND (repo = geoffreyblake/greenlet)
     install:
       - python3 -m pip install twine
     script:
       - ./make-manylinux manylinux2014_aarch64
-    after_succes:
-      - python3 -m twine upload --skip-existing wheelhouse/*
+    after_success:
+      - python3 -m twine upload --skip-existing --repository-url=https://test.pypi.org/legacy wheelhouse/*
 
 install: python setup.py build_ext -i
 
