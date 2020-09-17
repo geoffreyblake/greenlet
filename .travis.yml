@@ -76,7 +76,7 @@ matrix:
     services:
       - docker
     #if: (branch IS master) AND (tag IS present) AND (repo = python-greenlet/greenlet)
-    if: (branch = "arm64_automate_wheelbuild") AND (tag IS present)   # AND (repo = geoffreyblake/greenlet)
+    if: (tag IS present)  #(branch = "arm64_automate_wheelbuild") AND (tag IS present)   # AND (repo = geoffreyblake/greenlet)
     install:
       - python3 -m pip install twine
     script:
